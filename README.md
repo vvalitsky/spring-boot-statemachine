@@ -58,7 +58,7 @@ Build project
 ### Swagger UI is available on http://localhost:8085/swagger-ui.html
 ![Swagger_1](https://raw.githubusercontent.com/vvalitsky/spring-boot-statemachine/master/screenshots/swagger_1.png)
 
-### Swagger UI is available on http://localhost:8085/swagger-ui.html
+### Create process task
 ![SwaggerTaskCreation](https://raw.githubusercontent.com/vvalitsky/spring-boot-statemachine/master/screenshots/swagger_task_creation.png)
 
 ### Response result
