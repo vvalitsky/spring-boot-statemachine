@@ -31,6 +31,17 @@ class BusinessProcessServiceImpl(val processTaskRepository: ProcessTaskRepositor
         }
     }
 
+    override fun actionOnReviewTask(): Action<State, Event> {
+        return Action { stateContext ->
+            run {
+                println("State target name on review ${stateContext.target.id.name}")
+                processTaskRepository.findAll().forEach {
+                    println("Process task name: ${it?.name}")
+                }
+            }
+        }
+    }
+
     override fun actionOnFinishTask(): Action<State, Event> {
         return Action { stateContext ->
             run {

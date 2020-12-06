@@ -19,6 +19,7 @@ import org.springframework.statemachine.kryo.MessageHeadersSerializer
 import org.springframework.statemachine.kryo.StateMachineContextSerializer
 import org.springframework.statemachine.kryo.UUIDSerializer
 import org.springframework.stereotype.Component
+import org.springframework.transaction.annotation.Propagation
 import org.springframework.transaction.annotation.Transactional
 
 @Component
@@ -39,20 +40,20 @@ class StateMachinePersistComponent(
         }
     }
 
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     override fun write(stateMachineContext: StateMachineContext<State, Event>, processTask: ProcessTask) {
 
         val task = if (processTask.id != null) {
             processTaskRepository.findById(processTask.id)
                     ?: throw StateMachinePersistException("Process task with id = ${processTask.id} not found")
         } else {
-            processTaskRepository.save(processTask)
+            processTaskRepository.saveAndFlush(processTask)
         }
 
         val processTaskState = processTaskStateRepository.findByProcessTaskId(task?.id)
 
         if (processTaskState == null) {
-            processTaskStateRepository.save(
+            processTaskStateRepository.saveAndFlush(
                     ProcessTaskState(
                             id = null,
                             processTask = task,

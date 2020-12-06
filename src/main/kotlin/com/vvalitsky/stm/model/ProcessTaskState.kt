@@ -2,6 +2,7 @@ package com.vvalitsky.stm.model
 
 import javax.persistence.Column
 import javax.persistence.Entity
+import javax.persistence.FetchType
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
@@ -16,8 +17,8 @@ data class ProcessTaskState(
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     val id: Long? = null,
 
-    @OneToOne
-    @JoinColumn(name = "processTaskId", updatable = false, insertable = false)
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "processTaskId", nullable = false)
     val processTask: ProcessTask,
 
     @Column

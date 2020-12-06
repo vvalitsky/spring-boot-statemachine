@@ -1,5 +1,4 @@
 -- Author: Vladislav Valitsky
--- Date: 2020-05-05
 
 -- Step #1: Creating stm schema
 create schema if not exists stm;

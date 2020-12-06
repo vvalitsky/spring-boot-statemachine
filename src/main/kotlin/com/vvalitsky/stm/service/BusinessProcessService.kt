@@ -7,5 +7,6 @@ import org.springframework.statemachine.action.Action
 interface BusinessProcessService {
     fun actionOnCreateTask(): Action<State, Event>
     fun actionOnStartTask(): Action<State, Event>
+    fun actionOnReviewTask(): Action<State, Event>
     fun actionOnFinishTask(): Action<State, Event>
 }

@@ -22,24 +22,20 @@ class StateMachineConfig(
     val businessProcessService: BusinessProcessService
 ) : EnumStateMachineConfigurerAdapter<State, Event>() {
 
-    @Throws(Exception::class)
     override fun configure(config: StateMachineConfigurationConfigurer<State, Event>) {
         config.withConfiguration()
                 .autoStartup(true)
                 .listener(listener())
     }
 
-    @Throws(Exception::class)
     override fun configure(states: StateMachineStateConfigurer<State, Event>) {
         states.withStates()
-                .initial(State.TASK_CREATED)
+                .initial(State.TASK_CREATED, businessProcessService.actionOnStartTask())
                 .state(State.TASK_STARTED)
                 .state(State.TASK_ON_REVIEW)
-                .state(State.TASK_FINISHED)
                 .end(State.TASK_FINISHED)
     }
 
-    @Throws(Exception::class)
     override fun configure(transitions: StateMachineTransitionConfigurer<State, Event>) {
         transitions
                 .withExternal()
@@ -52,11 +48,13 @@ class StateMachineConfig(
                         .source(State.TASK_STARTED)
                         .target(State.TASK_ON_REVIEW)
                         .event(Event.REVIEW_TASK)
+                        .action(businessProcessService.actionOnReviewTask())
                 .and()
                     .withExternal()
                         .source(State.TASK_ON_REVIEW)
                         .target(State.TASK_FINISHED)
                         .event(Event.FINISH_TASK)
+                        .action(businessProcessService.actionOnFinishTask())
     }
 
     @Bean
