@@ -77,6 +77,11 @@ Build project
 ### Related task state in database
 ![CreatedTaskStateInDb](https://raw.githubusercontent.com/vvalitsky/spring-boot-statemachine/master/screenshots/database_related_task_state.png)
 
+In logs You will see result of calling BusinessProcessService.actionOnCreateTask()
+```bash
+State target name on start TASK_CREATED
+```
+
 ----
 ### Start process task
 ![StartProcessTask](https://raw.githubusercontent.com/vvalitsky/spring-boot-statemachine/master/screenshots/swagger_fire_start_task_event.png)
@@ -114,6 +119,11 @@ State target name on start TASK_STARTED
 ### Process task state changed to TASK_ON_REVIEW
 ![ProcessTaskStateReview](https://raw.githubusercontent.com/vvalitsky/spring-boot-statemachine/master/screenshots/database_task_state_review_state.png)
 
+In logs You will see result of calling BusinessProcessService.actionOnReviewTask()
+```bash
+State target name on review TASK_ON_REVIEW
+```
+
 ----
 ### Finish process task
 ![FinishTaskProcess](https://raw.githubusercontent.com/vvalitsky/spring-boot-statemachine/master/screenshots/swagger_final_state_finished.png)
@@ -130,5 +140,9 @@ State target name on start TASK_STARTED
 ### Process task state changed to TASK_FINISHED
 ![ProcessTaskStateFinished](https://raw.githubusercontent.com/vvalitsky/spring-boot-statemachine/master/screenshots/database_finish_state.png)
 
+In logs You will see result of calling BusinessProcessService.actionOnFinishTask()
+```bash
+State target name on finish TASK_FINISHED
+```
 
 
