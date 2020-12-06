@@ -1,0 +1,49 @@
+server:
+  port: ${SERVER_PORT:8085}
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: stm
+  datasource:
+    initialization-mode: always
+    driver-class-name: org.postgresql.Driver
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/stm}
+    username: ${SPRING_DATASOURCE_USERNAME:stm}
+    password: ${SPRING_DATASOURCE_PASSWORD:stm}
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        default_schema: stm
+        format_sql: true
+        temp:
+          use_jdbc_metadata_defaults: false
+    show-sql: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    locations: classpath:db/migrations
+    baseline-on-migrate: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, health, prometheus, metrics
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoint:
+    health:
+      show-details: always
+    prometheus:
+      enabled: true
+    metrics:
+      enabled: true
