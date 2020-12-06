@@ -14,7 +14,7 @@ import javax.persistence.Table
 @Table(name = "process_task_state")
 data class ProcessTaskState(
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)

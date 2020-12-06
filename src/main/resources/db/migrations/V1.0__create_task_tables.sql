@@ -6,7 +6,7 @@ create schema if not exists stm;
 -- Step #2: Creating process_task
 create table stm.process_task
 (
-    id bigint not null,
+    id bigserial not null,
     name varchar(256),
     primary key (id)
 );
@@ -14,7 +14,7 @@ create table stm.process_task
 -- Step #3: Creating process_task_state
 create table stm.process_task_state
 (
-    id bigint not null,
+    id bigserial not null,
     process_task_id bigint not null,
     state varchar(256) not null,
     state_context bytea not null,

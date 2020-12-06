@@ -12,7 +12,7 @@ import javax.persistence.Table
 @Table(name = "process_task")
 data class ProcessTask(
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
     @Column
