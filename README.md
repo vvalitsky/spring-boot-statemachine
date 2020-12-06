@@ -1,11 +1,11 @@
-# spring-boot-statemachine
-SpringBoot state machine usage with PostgreSql example
+### SpringBoot state machine usage with PostgreSql example
 Official documentation -> https://docs.spring.io/spring-statemachine/docs/1.1.1.RELEASE/reference/htmlsingle/
 
 This abstraction is useful for programming different business flows, which are based on some states.
 
 In this example we have designed simple flow of some abstract task process flow.
-###States configuration
+
+### States configuration
 ```kotlin
     override fun configure(states: StateMachineStateConfigurer<State, Event>) {
         states
@@ -18,7 +18,8 @@ In this example we have designed simple flow of some abstract task process flow.
 ```
 
 This step is about flow events wiring with states and describes a transition flow.
-###Transitions configuration
+
+### Transitions configuration
 ```kotlin
     override fun configure(transitions: StateMachineTransitionConfigurer<State, Event>) {
         transitions
